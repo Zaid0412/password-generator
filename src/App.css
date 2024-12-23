@@ -29,7 +29,7 @@ body{
 #root{
   display: flex;
   justify-content: center;
-  margin-top: 10vh;
+  margin-top: 6.5vh;
 }
 
 .app{
@@ -45,10 +45,13 @@ body{
   text-align: center;
 }
 
+.pwd-output{
+  width: 100%;
+}
 
 .input-container {
   position: relative;
-  width: 300px;
+  width: 100%;
 }
 
 .input-container input {
@@ -337,6 +340,7 @@ button.generate-pwd-btn{
   text-transform: uppercase;
   padding-top: 7px;
   padding-bottom: 7px;
+  margin-bottom: 8px;
   cursor: pointer;
   transition: all 0.15s ease-in;
   will-change: transform;
@@ -353,5 +357,9 @@ button.generate-pwd-btn:hover{
 
 button.generate-pwd-btn:active{
   transform: scale(.995);
+  background-color: #282c4b;
+}
+
+button.generate-pwd-btn.saved{
   background-color: #282c4b;
 }

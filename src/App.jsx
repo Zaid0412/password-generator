@@ -4,6 +4,7 @@ import './App.css'
 function App() {
 
     const [isCopied, setIsCopied] = useState(false);
+    const [isSaved, setIsSaved] = useState(false)
     const [pwdLength, setPwdLength] = useState(16)
     const [includeUppercase, setIncludeUppercase] = useState(true)
     const [includeLowercase, setIncludeLowercase] = useState(true)
@@ -51,9 +52,15 @@ function App() {
   }
     
     const handleIconClick = () => {
+      navigator.clipboard.writeText(generatedPwd);
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 1000); // Reset animation after 1 second
     };
+
+    const handleSaveClick = () => {
+      setIsSaved(true)
+      setTimeout(() => setIsSaved(false), 1000); // Reset animation after 1 second
+    }
 
     const handlePwdLength = (e) =>{
       setPwdLength(e.target.value)
@@ -119,6 +126,10 @@ function App() {
         <button className="generate-pwd-btn" onClick={handleGeneratePwd}>
           Generate Password
         </button>
+        <button className={`generate-pwd-btn ${isSaved ? 'saved': ''}`} onClick={handleSaveClick}>
+          Save Password
+        </button>
+        {isSaved && <span className="copy-feedback">Saved!</span>}
       </div>
     </>
   )
