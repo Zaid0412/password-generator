@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copy Animation - Custom Colors</title>
+  <style>
+    /* Custom Theme Styles */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #0A0E31; /* Main background */
+      color: #FFF; /* Text color */
+    }
+
+    .copy-container {
+      position: relative;
+      text-align: center;
+    }
+
+    .copy-button {
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      background-color: #1D2141; /* Button background */
+      color: #FFF; /* Button text color */
+      border-radius: 8px;
+      outline: none;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .copy-button:hover {
+      background-color: #2F375D; /* Slightly lighter on hover */
+      transform: scale(1.05);
+    }
+
+    .copy-animation {
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%) scale(0.8);
+      background-color: #1D2141; /* Animation box background */
+      color: #FFF; /* Animation text color */
+      padding: 8px 16px;
+      border-radius: 5px;
+      font-size: 14px;
+      opacity: 0;
+      pointer-events: none;
+      animation: copy-fade-custom 1.5s ease-in-out forwards;
+    }
+
+    @keyframes copy-fade-custom {
+      0% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+      }
+      50% {
+        transform: translateX(-50%) translateY(-10px) scale(1.1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px) scale(0.9);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="copy-container">
+    <button class="copy-button" onclick="triggerAnimation()">Copy Text</button>
+    <div id="copyAnimation" class="copy-animation" hidden>Copied!</div>
+  </div>
+
+  <script>
+    function triggerAnimation() {
+      const copyAnimation = document.getElementById("copyAnimation");
+      copyAnimation.hidden = false; // Show the animation element
+      copyAnimation.classList.remove("copy-fade-custom"); // Restart animation
+      void copyAnimation.offsetWidth; // Trigger reflow
+      copyAnimation.classList.add("copy-fade-custom"); // Add animation class
+      setTimeout(() => (copyAnimation.hidden = true), 1500); // Hide after animation
+    }
+  </script>
+</body>
+</html>
